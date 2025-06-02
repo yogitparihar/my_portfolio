@@ -84,7 +84,7 @@ const Home = () => {
                 },
               }}
             >
-              Hi, My name is
+              Hi, my name is
             </Typography>
           </motion.div>
 
