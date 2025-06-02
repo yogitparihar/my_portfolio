@@ -6,14 +6,21 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
+        node-version: [18.x]
 
     steps:
     - uses: actions/checkout@v4
@@ -27,6 +34,9 @@ jobs:
     - run: npm test
     
     - name: Deploy 🚀
+      id: deployment
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        folder: dist # The folder the action should deploy.
+        folder: dist
+        branch: gh-pages
+        clean: true
