@@ -1,4 +1,4 @@
-name: Build and Deploy to GitHub Pages
+name: Deploy using github Action
 
 on:
   push:
@@ -39,3 +39,7 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2 
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+            folder: build # The folder the action should deploy.
